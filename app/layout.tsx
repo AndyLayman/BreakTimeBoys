@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -46,10 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${grotesk.variable} ${mono.variable}`}>
       <body>
+        <ScrollProgress />
         <Header />
         <main>{children}</main>
         <Footer />
         <CookieBanner />
+        <div className="grain" aria-hidden="true" />
       </body>
     </html>
   );

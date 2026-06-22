@@ -11,15 +11,15 @@ export default function Hero() {
           <span>(001)</span>
         </div>
 
-        <Reveal>
-          <h1 className="huge text-[clamp(2.6rem,13vw,12rem)]">
-            We build
-            <br />
+        <h1 className="huge text-[clamp(2.6rem,13vw,12rem)]">
+          <span className="hero-line">We build</span>
+          <span className="hero-line">
             design <span className="stroke-ink">solutions</span>
-            <br />
+          </span>
+          <span className="hero-line">
             tailored to your <span className="text-accent">users.</span>
-          </h1>
-        </Reveal>
+          </span>
+        </h1>
 
         <div className="mt-10 md:mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <Reveal className="max-w-md" delay={80}>

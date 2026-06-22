@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import Clock from "./Clock";
 
 const NAV = [
   { label: "Home", href: "/", note: "Index" },
@@ -47,7 +48,8 @@ export default function Header() {
             </span>
           </Link>
           <div className="flex items-center gap-4 md:gap-6">
-            <span className="hidden md:block label">[ Bonney Lake, WA ]</span>
+            <span className="hidden lg:block label">[ Bonney Lake, WA ]</span>
+            <Clock />
             <button
               onClick={() => setOpen(true)}
               className="label bd px-3 py-2 inline-flex items-center gap-2 hover:bg-ink hover:text-paper transition-colors"
