@@ -6,23 +6,14 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const NAV = [
-  { label: "Home", href: "/" },
-  { label: "Logo Work", href: "/logo-work" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/", note: "Index" },
+  { label: "Logo Work", href: "/logo-work", note: "Selected marks" },
+  { label: "Contact", href: "/contact", note: "Say sallut" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setOpen(false);
@@ -41,115 +32,98 @@ export default function Header() {
     };
   }, [open]);
 
-  const solid = scrolled || !isHome;
-  const darkText = solid;
-
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          solid
-            ? "bg-white/95 backdrop-blur border-b border-[#ececec]"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="container-x flex items-center justify-between h-[88px]">
+      <header className="sticky top-0 z-40 bg-paper bd-b">
+        <div className="container-x flex items-center justify-between h-[68px] md:h-[76px]">
           <Link
             href="/"
+            className="flex items-center gap-3"
             aria-label="Break Time Boys — home"
-            className={`${darkText ? "text-ink" : "text-white"} transition-colors`}
           >
-            <Logo className="w-9 h-9" />
-          </Link>
-          <button
-            onClick={() => setOpen(true)}
-            className={`flex items-center gap-3 ${
-              darkText ? "text-ink" : "text-white"
-            } transition-colors`}
-            aria-label="Open menu"
-          >
-            <span className="text-sm font-semibold tracking-wide">Menu</span>
-            <span className="flex flex-col gap-[5px]">
-              <span className="block w-7 h-[2px] bg-current" />
-              <span className="block w-7 h-[2px] bg-current" />
+            <Logo className="w-7 h-7" />
+            <span className="hidden sm:block display text-lg leading-none">
+              Break Time Boys
             </span>
-          </button>
+          </Link>
+          <div className="flex items-center gap-4 md:gap-6">
+            <span className="hidden md:block label">[ Bonney Lake, WA ]</span>
+            <button
+              onClick={() => setOpen(true)}
+              className="label bd px-3 py-2 inline-flex items-center gap-2 hover:bg-ink hover:text-paper transition-colors"
+              aria-label="Open menu"
+            >
+              Menu <span className="text-base leading-none">+</span>
+            </button>
+          </div>
         </div>
       </header>
 
       <div
-        className={`fixed inset-0 z-50 flex flex-col bg-ink text-white overflow-y-auto transition-[opacity,visibility] duration-500 ${
+        className={`fixed inset-0 z-50 bg-ink text-paper flex flex-col transition-[opacity,visibility] duration-300 ${
           open ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="container-x flex items-center justify-between h-[88px] shrink-0">
-          <Logo className="w-9 h-9 text-white" />
+        <div className="container-x flex items-center justify-between h-[68px] md:h-[76px] border-b border-white/20 shrink-0">
+          <span className="display text-lg">Break Time Boys</span>
           <button
             onClick={() => setOpen(false)}
-            className="flex items-center gap-3"
+            className="label border border-white/40 px-3 py-2 inline-flex items-center gap-2 hover:bg-accent hover:border-accent transition-colors"
             aria-label="Close menu"
           >
-            <span className="text-sm font-semibold tracking-wide">Close</span>
-            <span className="relative block w-7 h-7">
-              <span className="absolute top-1/2 left-0 w-7 h-[2px] bg-white rotate-45" />
-              <span className="absolute top-1/2 left-0 w-7 h-[2px] bg-white -rotate-45" />
-            </span>
+            Close <span className="text-base leading-none">×</span>
           </button>
         </div>
 
-        <nav className="container-x flex-1 flex items-center">
-          <ul className="space-y-1 py-12">
-            {NAV.map((item, i) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={`group inline-flex items-baseline gap-5 display font-bold text-5xl md:text-7xl transition-colors ${
-                    pathname === item.href
-                      ? "text-white"
-                      : "text-[#5a5a5a] hover:text-white"
-                  }`}
-                >
-                  <span className="text-xs tracking-widest text-[#5a5a5a]">
-                    0{i + 1}
-                  </span>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <nav className="container-x flex-1 flex flex-col justify-center">
+          {NAV.map((item, i) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="group flex items-baseline gap-5 md:gap-8 border-b border-white/15 py-5 md:py-7"
+            >
+              <span className="label text-white/40">[0{i + 1}]</span>
+              <span
+                className={`huge text-5xl md:text-8xl transition-all duration-200 group-hover:translate-x-3 ${
+                  pathname === item.href
+                    ? "text-accent"
+                    : "group-hover:text-accent"
+                }`}
+              >
+                {item.label}
+              </span>
+              <span className="ml-auto label text-white/40 hidden md:block">
+                {item.note}
+              </span>
+            </Link>
+          ))}
         </nav>
 
-        <div className="container-x pb-12 shrink-0">
-          <div className="hairline !bg-white/15 mb-8" />
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div>
-              <p className="eyebrow text-[#5a5a5a] mb-2">Get in touch</p>
-              <a
-                href="mailto:info@breaktimeboys.com"
-                className="text-lg hover:underline"
-              >
-                info@breaktimeboys.com
-              </a>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <a
-                href="https://www.facebook.com/breaktimeboys/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#9a9a9a] hover:text-white transition-colors"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://www.instagram.com/breaktimeboysstudio/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#9a9a9a] hover:text-white transition-colors"
-              >
-                Instagram
-              </a>
-            </div>
+        <div className="container-x border-t border-white/20 py-6 shrink-0 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <a
+            href="mailto:info@breaktimeboys.com"
+            className="mono text-sm hover:text-accent transition-colors"
+          >
+            info@breaktimeboys.com
+          </a>
+          <div className="flex gap-6 label text-white/60">
+            <a
+              href="https://www.facebook.com/breaktimeboys/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://www.instagram.com/breaktimeboysstudio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              Instagram
+            </a>
           </div>
         </div>
       </div>

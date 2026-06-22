@@ -4,47 +4,43 @@ const BLOCKS = [
   {
     n: "01",
     title: "Make your business visible online and earn more.",
-    body: "We are a creative studio with the skill to deliver awesome user experiences. Through iteration and analysis, we put your brand in front of the right people while making it effortless for them to act.",
+    body: "We put your brand in front of the right people and make it effortless for them to act — through iteration, analysis and relentless craft.",
   },
   {
     n: "02",
     title: "Make your eCommerce business stand out.",
-    body: "We craft commerce tools for web and mobile that blend bold creative with conversion-first thinking — so your store feels unmistakably yours and performs at every step.",
+    body: "Commerce tools for web and mobile that blend bold creative with conversion-first thinking — so your store feels unmistakably yours.",
   },
   {
     n: "03",
     title: "Grow with your audience.",
-    body: "We help you build a loyal following with content, design and experiences that keep people coming back — and turn customers into advocates.",
+    body: "Content, design and experiences that keep people coming back — and turn customers into advocates for the long haul.",
   },
 ];
 
-function Block({ n, title, body }: (typeof BLOCKS)[number]) {
-  return (
-    <div className="relative">
-      <span className="outline-number absolute -top-10 -left-2 z-0">{n}</span>
-      <div className="relative z-10 pt-8 max-w-xs">
-        <h3 className="display font-bold text-xl md:text-2xl mb-4 leading-snug">
-          {title}
-        </h3>
-        <p className="muted text-sm leading-relaxed">{body}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function NumberedBlocks() {
   return (
-    <section className="container-x py-24 md:py-32">
-      <div className="grid gap-20 md:grid-cols-12 md:gap-10">
-        <Reveal className="md:col-span-5 md:col-start-1">
-          <Block {...BLOCKS[0]} />
-        </Reveal>
-        <Reveal className="md:col-span-5 md:col-start-4 md:mt-28" delay={100}>
-          <Block {...BLOCKS[1]} />
-        </Reveal>
-        <Reveal className="md:col-span-5 md:col-start-8 md:mt-12" delay={200}>
-          <Block {...BLOCKS[2]} />
-        </Reveal>
+    <section className="bd-b">
+      <div className="container-x">
+        {BLOCKS.map((b, i) => (
+          <Reveal key={b.n} className={i > 0 ? "bd-t" : ""}>
+            <div className="grid md:grid-cols-12 gap-4 md:gap-10 py-12 md:py-16 md:items-center">
+              <div className="md:col-span-4 lg:col-span-3">
+                <span className="huge stroke-ink block text-[24vw] md:text-[11rem] leading-none">
+                  {b.n}
+                </span>
+              </div>
+              <div className="md:col-span-5">
+                <h3 className="display text-2xl md:text-4xl">{b.title}</h3>
+              </div>
+              <div className="md:col-span-3 lg:col-span-4">
+                <p className="mono text-sm leading-relaxed opacity-80">
+                  {b.body}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ const ITEMS = [
     a: "We dig into your market and your rivals to find the angle only you can own, then build the brand and product story around it.",
   },
   {
-    q: "Analyze and optimize with data at your fingertip",
+    q: "Analyze and optimize with data at hand",
     a: "Dashboards, testing and clear reporting keep you in control — every decision backed by evidence, every release better than the last.",
   },
 ];
@@ -22,39 +22,41 @@ export default function AwardAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="container-x py-24 md:py-32">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 lg:items-center">
-        <Reveal className="order-2 lg:order-1">
-          <div className="media-ph aspect-[4/5] w-full rounded-sm" />
+    <section className="bd-b">
+      <div className="container-x py-16 md:py-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <Reveal>
+          <p className="label text-accent mb-4">(Studio)</p>
+          <h2 className="display text-3xl md:text-5xl">
+            We are an award-winning digital creative studio from Bonney Lake,
+            building unforgettable interactive experiences.
+          </h2>
+          <figure className="relative mt-10 bd hard media-ph aspect-[16/10]">
+            <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between p-4 label text-paper">
+              <span>Fig.01</span>
+              <span>The Studio</span>
+            </figcaption>
+          </figure>
         </Reveal>
 
-        <Reveal className="order-1 lg:order-2" delay={100}>
-          <h2 className="display font-bold text-2xl sm:text-3xl md:text-4xl leading-[1.12] lg:text-right">
-            We are an award-winning digital creative studio from Bonney Lake, in
-            the business of creating unforgettable interactive experiences.
-          </h2>
-
-          <div className="mt-10 border-t border-[#ececec]">
+        <Reveal delay={100}>
+          <div className="bd-t">
             {ITEMS.map((item, i) => {
               const isOpen = open === i;
               return (
-                <div key={item.q} className="border-b border-[#ececec]">
+                <div key={item.q} className="bd-b">
                   <button
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     className="w-full flex items-center justify-between gap-6 py-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-semibold text-sm sm:text-base">
-                      {item.q}
+                    <span className="flex items-baseline gap-4">
+                      <span className="label text-accent">[0{i + 1}]</span>
+                      <span className="display text-lg md:text-2xl">
+                        {item.q}
+                      </span>
                     </span>
-                    <span
-                      className={`relative shrink-0 w-4 h-4 transition-transform duration-300 ${
-                        isOpen ? "rotate-45" : ""
-                      }`}
-                      aria-hidden="true"
-                    >
-                      <span className="absolute top-1/2 left-0 w-4 h-[1.5px] bg-ink -translate-y-1/2" />
-                      <span className="absolute left-1/2 top-0 h-4 w-[1.5px] bg-ink -translate-x-1/2" />
+                    <span className="mono text-2xl leading-none shrink-0">
+                      {isOpen ? "–" : "+"}
                     </span>
                   </button>
                   <div
@@ -65,7 +67,7 @@ export default function AwardAccordion() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="muted text-sm leading-relaxed pb-5 max-w-md lg:ml-auto lg:text-right">
+                      <p className="mono text-sm leading-relaxed pb-6 max-w-md opacity-80">
                         {item.a}
                       </p>
                     </div>

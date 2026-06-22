@@ -16,9 +16,9 @@ export default function CookieBanner() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-32px)] max-w-xl">
-      <div className="flex items-center justify-between gap-4 rounded-full bg-white border border-[#ececec] shadow-[0_10px_40px_rgba(0,0,0,0.12)] px-5 py-3">
-        <p className="text-sm text-ink">
+    <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:max-w-md z-[60]">
+      <div className="bg-paper bd hard p-4 flex items-center gap-4">
+        <p className="mono text-[0.72rem] leading-relaxed">
           This website uses cookies to improve your web experience.
         </p>
         <button
@@ -30,7 +30,7 @@ export default function CookieBanner() {
             }
             setShow(false);
           }}
-          className="btn btn-solid shrink-0 !py-2 !px-5"
+          className="btn btn-accent !shadow-none shrink-0"
         >
           Accept
         </button>

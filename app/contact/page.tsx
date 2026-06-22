@@ -9,65 +9,68 @@ export const metadata: Metadata = {
 };
 
 const DETAILS = [
-  { label: "Email", value: "info@breaktimeboys.com", href: "mailto:info@breaktimeboys.com" },
-  { label: "Phone", value: "(253) 548-7169", href: "tel:+12535487169" },
-  { label: "Studio", value: "Bonney Lake, WA", href: undefined },
+  { n: "01", label: "Email", value: "info@breaktimeboys.com", href: "mailto:info@breaktimeboys.com" },
+  { n: "02", label: "Phone", value: "(253) 548-7169", href: "tel:+12535487169" },
+  { n: "03", label: "Studio", value: "Bonney Lake, WA", href: undefined },
 ];
 
 export default function ContactPage() {
   return (
-    <section className="container-x pt-[140px] md:pt-[170px] pb-28 md:pb-40">
-      <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-        <Reveal>
-          <p className="eyebrow muted">Contact</p>
-          <h1 className="display font-bold text-4xl md:text-6xl mt-3 leading-[1.05]">
-            Let&apos;s build something worth remembering.
-          </h1>
-          <p className="muted mt-6 max-w-md text-sm leading-relaxed">
-            Looking for collaboration on your next project? Tell us what you have
-            in mind and we&apos;ll get back to you. Don&apos;t be shy — say sallut.
-          </p>
+    <section className="bd-b">
+      <div className="container-x py-16 md:py-24">
+        <div className="flex justify-between gap-4 label pb-8">
+          <span>[ Contact ]</span>
+          <span>Say sallut</span>
+        </div>
 
-          <div className="mt-12 space-y-8">
-            {DETAILS.map((d) => (
-              <div key={d.label}>
-                <p className="eyebrow muted mb-1">{d.label}</p>
-                {d.href ? (
-                  <a href={d.href} className="text-lg hover:underline">
-                    {d.value}
-                  </a>
-                ) : (
-                  <p className="text-lg">{d.value}</p>
-                )}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div>
+            <Reveal>
+              <h1 className="huge text-[clamp(2.6rem,9vw,7rem)]">
+                Let&apos;s build something <span className="text-accent">worth</span> remembering.
+              </h1>
+              <p className="mono text-sm leading-relaxed mt-8 max-w-md">
+                // Looking for collaboration on your next project? Tell us what
+                you have in mind and we&apos;ll get back to you. Don&apos;t be
+                shy.
+              </p>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <div className="mt-12 bd-t">
+                {DETAILS.map((d) => (
+                  <div key={d.label} className="bd-b py-5 flex items-center justify-between gap-4">
+                    <span className="flex items-baseline gap-4">
+                      <span className="label text-accent">[{d.n}]</span>
+                      <span className="label">{d.label}</span>
+                    </span>
+                    {d.href ? (
+                      <a href={d.href} className="display text-lg md:text-xl hover:text-accent transition-colors">
+                        {d.value}
+                      </a>
+                    ) : (
+                      <span className="display text-lg md:text-xl">{d.value}</span>
+                    )}
+                  </div>
+                ))}
+                <div className="bd-b py-5 flex items-center justify-between gap-4">
+                  <span className="flex items-baseline gap-4">
+                    <span className="label text-accent">[04]</span>
+                    <span className="label">Social</span>
+                  </span>
+                  <span className="flex gap-5 display text-lg md:text-xl">
+                    <a href="https://www.facebook.com/breaktimeboys/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Fb.</a>
+                    <a href="https://www.instagram.com/breaktimeboysstudio/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Ig.</a>
+                  </span>
+                </div>
               </div>
-            ))}
-            <div>
-              <p className="eyebrow muted mb-1">Social</p>
-              <div className="flex gap-6 text-lg">
-                <a
-                  href="https://www.facebook.com/breaktimeboys/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline"
-                >
-                  Facebook
-                </a>
-                <a
-                  href="https://www.instagram.com/breaktimeboysstudio/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline"
-                >
-                  Instagram
-                </a>
-              </div>
-            </div>
+            </Reveal>
           </div>
-        </Reveal>
 
-        <Reveal delay={120}>
-          <ContactForm />
-        </Reveal>
+          <Reveal delay={150}>
+            <ContactForm />
+          </Reveal>
+        </div>
       </div>
     </section>
   );
