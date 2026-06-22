@@ -349,3 +349,38 @@ body {
     transition: none;
   }
 }
+
+/* outline text for dark sections */
+.stroke-paper {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--paper);
+}
+@media (min-width: 768px) {
+  .stroke-paper {
+    -webkit-text-stroke: 2px var(--paper);
+  }
+}
+
+/* zoom when hovering the frame itself (not just a group parent) */
+.img-zoom:hover img {
+  transform: scale(1.07);
+}
+
+/* highlighter wipe — fires when its Reveal scrolls into view */
+.hl {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 86%;
+  background-size: 0% 36%;
+  transition: background-size 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+  padding: 0 0.04em;
+}
+.reveal.is-visible .hl {
+  background-size: 100% 36%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hl {
+    transition: none;
+    background-size: 100% 36%;
+  }
+}
