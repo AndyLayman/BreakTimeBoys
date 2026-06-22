@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import SmartImg from "@/components/SmartImg";
+import { PROJECTS as PROJECT_MEDIA } from "@/lib/media";
 
 const PROJECTS = [
   { title: "Imperiya Barbell", tag: "Brand Identity", year: "’23" },
@@ -38,8 +40,14 @@ export default function PortfolioStrip() {
           {visible.map((p, i) => (
             <Reveal key={p.title} className="bd-r bd-b" delay={(i % 4) * 60}>
               <a href="#" className="group block cell-invert h-full">
-                <div className="relative media-ph aspect-[4/3]">
-                  <span className="absolute top-3 left-3 label text-paper z-10">
+                <div className="relative img-zoom aspect-[4/3] bd-b">
+                  <SmartImg
+                    src={PROJECT_MEDIA[i % PROJECT_MEDIA.length].src}
+                    fallback={PROJECT_MEDIA[i % PROJECT_MEDIA.length].fallback}
+                    alt={p.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <span className="absolute top-3 left-3 label bg-ink text-paper px-1.5 py-0.5 z-10">
                     [{String(i + 1).padStart(2, "0")}]
                   </span>
                 </div>

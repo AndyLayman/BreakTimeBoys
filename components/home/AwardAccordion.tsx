@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Reveal from "@/components/Reveal";
+import SmartImg from "@/components/SmartImg";
+import { STUDIO } from "@/lib/media";
 
 const ITEMS = [
   {
@@ -30,7 +32,13 @@ export default function AwardAccordion() {
             We are an award-winning digital creative studio from Bonney Lake,
             building unforgettable interactive experiences.
           </h2>
-          <figure className="relative mt-10 bd hard media-ph aspect-[16/10]">
+          <figure className="relative mt-10 bd hard overflow-hidden media-frame aspect-[16/10]">
+            <SmartImg
+              src={STUDIO.src}
+              fallback={STUDIO.fallback}
+              alt={STUDIO.alt}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             <figcaption className="absolute bottom-0 left-0 right-0 flex justify-between p-4 label text-paper">
               <span>Fig.01</span>
               <span>The Studio</span>

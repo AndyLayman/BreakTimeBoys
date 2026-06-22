@@ -306,3 +306,46 @@ body {
     animation: none;
   }
 }
+
+/* ---------- Media ---------- */
+.kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1.02) translate(0, 0);
+  }
+  to {
+    transform: scale(1.14) translate(-2%, -1.5%);
+  }
+}
+.media-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, rgba(10, 10, 10, 0.55));
+  z-index: 2;
+}
+.media-frame > figcaption {
+  z-index: 3;
+}
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .img-zoom img {
+  transform: scale(1.07);
+}
+@media (prefers-reduced-motion: reduce) {
+  .kenburns {
+    animation: none;
+  }
+  .img-zoom img {
+    transition: none;
+  }
+}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import HeroMedia from "@/components/HeroMedia";
 
 export default function Hero() {
   return (
@@ -39,6 +40,12 @@ export default function Hero() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal delay={220}>
+          <div className="mt-12 md:mt-16">
+            <HeroMedia />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
